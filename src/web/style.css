@@ -1,0 +1,126 @@
+* { box-sizing: border-box; }
+
+/* Without this, rules like "button { display: inline-block }" would override the hidden attribute. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  padding: 24px 16px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #e9eef6;
+  color: #1c2333;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(20, 40, 90, 0.12);
+}
+
+h1 { text-align: center; margin: 0 0 16px; }
+h1 .pro { color: #1f3a8a; }
+h2 { margin: 0 0 10px; font-size: 1.15rem; }
+
+/* ---------- form ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+.field { display: flex; flex-direction: column; gap: 4px; }
+label { font-size: 0.85rem; font-weight: 600; color: #3b4660; }
+
+input, select {
+  padding: 10px;
+  border: 1px solid #b8c2d6;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  color: inherit;
+  min-width: 0;
+}
+input:focus, select:focus, button:focus-visible, .button-link:focus-visible {
+  outline: 3px solid #93b4ff;
+  outline-offset: 1px;
+}
+input.invalid, select.invalid { border-color: #c62828; }
+.error { color: #c62828; font-size: 0.8rem; min-height: 1.1em; }
+
+.actions { margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+button, .button-link {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button.primary { background: #14246b; color: #fff; }
+button.primary:hover { background: #0e1a52; }
+button.secondary, .button-link { background: #e3e8f4; color: #1c2333; }
+button.secondary:hover, .button-link:hover { background: #d3daeb; }
+button.small { padding: 6px 10px; font-size: 0.85rem; }
+button.danger { background: #d9534f; color: #fff; }
+button.danger:hover { background: #c0403c; }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- banner ---------- */
+.banner {
+  background: #fdecea;
+  color: #8a1c17;
+  border: 1px solid #f3b8b4;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.banner.ok { background: #e7f6ea; color: #1b5e20; border-color: #b4dfba; }
+
+/* ---------- summary ---------- */
+.summary {
+  background: #eaf1fb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 20px 0;
+}
+.stats { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 8px; }
+.stats div { display: flex; flex-direction: column; }
+.stat-label { font-size: 0.75rem; color: #54607a; text-transform: uppercase; letter-spacing: 0.04em; }
+
+.bars { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.bars li { display: grid; grid-template-columns: 110px 1fr 110px; align-items: center; gap: 8px; font-size: 0.9rem; }
+.bar-track { background: #d3def2; border-radius: 6px; height: 12px; overflow: hidden; }
+.bar-fill { background: #2f5fd0; height: 100%; }
+.bars .amt { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---------- filters ---------- */
+.filters { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 12px; }
+
+/* ---------- table ---------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th { background: #cfdcf3; color: #14246b; text-align: left; padding: 10px; font-size: 0.9rem; }
+td { padding: 10px; border-bottom: 1px solid #e3e8f4; vertical-align: middle; overflow-wrap: anywhere; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.row-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.empty { text-align: center; color: #6b7690; padding: 16px 0; }
+.version { text-align: center; color: #777; font-size: 12px; margin: 16px 0 0; }
+
+@media (max-width: 640px) {
+  .container { padding: 16px; }
+  .bars li { grid-template-columns: 80px 1fr 90px; }
+
+  /* On a phone each expense becomes a small card instead of a squeezed table row. */
+  table, tbody, tr, td { display: block; }
+  thead { position: absolute; left: -9999px; }
+  tr { border: 1px solid #d3def2; border-radius: 10px; margin-bottom: 10px; padding: 6px 12px; }
+  td { display: flex; justify-content: space-between; gap: 12px; border: none; padding: 6px 0; text-align: right; }
+  td::before { content: attr(data-label); font-weight: 600; color: #54607a; text-align: left; flex-shrink: 0; }
+  td.row-actions { justify-content: flex-end; }
+  td.row-actions::before { content: none; }
+}
