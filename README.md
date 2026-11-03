@@ -14,7 +14,7 @@ Capstone project for the YuvaIntern Full Stack Developer Fresher internship, by 
 - Clear error messages for every wrong input, shown next to the field
 - Works on desktop and phone
 
-## How it is built
+## HOW IT IS BUILT
 
 ```
 Browser (index.html, style.css, app.js)
